@@ -2,8 +2,12 @@
 from waybackpy import WaybackMachineCDXServerAPI
 import datetime
 import requests
+from utils import functions
+import toml
+
 
 WILDCARD = "*"
+UTF = 'unicode_escape'
 DAYS = 90
 delta = datetime.timedelta(DAYS)
 t = datetime.datetime.now() - delta
@@ -12,17 +16,29 @@ start_timestamp = t.strftime('%Y%m%d%H%M%S')
 
 def get_resources(url):
     """
-    retriving the last 90 days scanned resources of the url
+    retrieving the last 90 days scanned resources of the url and search signatures
     :param url: the domain or specific url
     :return:
     """
     url = url + WILDCARD
     cdx = WaybackMachineCDXServerAPI(url, start_timestamp=start_timestamp)
+    results = []
 
     counter = 0
-    for item in cdx.snapshots():
-        # print(item.archive_url)
-        # html = requests.get(item.archive_url).content
-        counter += 1
 
-    print(counter)
+    with open('datasets/config.toml', 'r') as f:
+        conf = toml.load(f)
+
+    for item in cdx.snapshots():
+        exceptions = conf['signatures']['exceptions']
+        ext = item.archive_url.split(".")[-1]
+
+        if ext not in exceptions:
+            html = requests.get(item.archive_url).content
+            res = functions.search_sign(html.decode(errors='ignore'))
+            if res:
+                results += res
+            counter += 1
+            print(str(counter) + " - " + url + " - " + ext)
+    return results
+
