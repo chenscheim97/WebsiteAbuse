@@ -1,15 +1,20 @@
-# This is a sample Python script.
+from utils import wayback, functions
+import time
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+COMPANY = ""
+CSV = 'datasets/bitsight-technologies-portfolio-all-companies-2022-03-17-2.csv'
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    start = time.perf_counter()
+    domains = [i[3] for i in functions.load_csv(CSV)[1:50]]
+    for url in domains:
+        print(url)
+        wayback.get_resources(url)
+
+    end = time.perf_counter()
+    print(end - start)
+
+
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
