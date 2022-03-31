@@ -1,8 +1,10 @@
+##########IMPORTS##########
 from utils import wayback, functions
 import time
 from multiprocessing import Pool
 
 
+#########CONSTANTS##########
 COMPANY = ""
 CSV = 'datasets/bitsight-technologies-portfolio-all-companies-2022-03-17-2.csv'
 MP = 10
@@ -20,8 +22,9 @@ if __name__ == '__main__':
         # results = wayback.get_resources(url)
 
         if results:
-            functions.write_result(results, url)
+            functions.write_result(results)
         break
+
     end = time.perf_counter()
 
     print(end - start)

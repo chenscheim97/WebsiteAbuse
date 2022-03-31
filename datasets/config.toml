@@ -5,15 +5,28 @@ name = "Chen Scheim"
 dob = 1997-05-27T07:32:00-08:00
 
 [signatures]
-signs = ['<script>document.body.innerHTML=\'.*\'</script>']
+signs = ['<script>document.body.innerHTML=\'.*\'</script>',
+         '<script src=\"http.?:\/\/.*\.js\"></script>',
+         '<script src=\"http.?:\/\/',
+         '<form method=\"POST\"',
+         '<iframe src=\"http.?:\/\/.*\"><\/iframe>',
+         '<iframe src=\"http.?:\/\/',
+         '<object data=\"http.?:\/\/',
+         '<embed type=\".*\" src=\"http.?:\/\/',
+         '<embed src=\"http.?:\/\/',
+         '<button id=\".*\" onclick=\".*\">']
+js_signs = ['eval(']
 exceptions = ['gif',
-    'png',
-    'svg',
-    'ico',
-    'jpg',
-    'pic1',
-    'videoImg',
-    'logo',
-    'image',
-    'webp',
-    'gif/']
+              'png',
+              'png/',
+              'svg',
+              'ico',
+              'jpg',
+              'pic1',
+              'videoImg',
+              'logo',
+              'image',
+              'webp',
+              'gif/',
+              'woff2',
+              'woff']
