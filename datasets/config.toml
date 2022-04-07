@@ -4,29 +4,52 @@ title = "TOML File"
 name = "Chen Scheim"
 dob = 1997-05-27T07:32:00-08:00
 
+[limits]
+days_ago = 30
+
+[constants]
+zero = 0
+one = 1
+space = ' '
+line = '\r\n'
+txt = '.txt'
+wild = '*'
+multiprocess = 50
+write = 'w'
+read = 'r'
+utf8 = 'utf-8'
+
 [signatures]
 signs = ['<script>document.body.innerHTML=\'.*\'</script>',
-         '<script src=\"http.?:\/\/.*\.js\"></script>',
-         '<script src=\"http.?:\/\/',
-         '<form method=\"POST\"',
-         '<iframe src=\"http.?:\/\/.*\"><\/iframe>',
-         '<iframe src=\"http.?:\/\/',
-         '<object data=\"http.?:\/\/',
-         '<embed type=\".*\" src=\"http.?:\/\/',
-         '<embed src=\"http.?:\/\/',
-         '<button id=\".*\" onclick=\".*\">']
+    '<script src=\"http.?:\/\/.*\.js\"></script>',
+    '<script src=\"http.?:\/\/.*>',
+    '<form method=\"POST\".*>',
+    '<iframe src=\"http.?:\/\/.*\"><\/iframe>',
+    '<iframe src=\"http.?:\/\/.*>',
+    '<object data=\"http.?:\/\/.*>',
+    '<embed type=\".*\" src=\"http.?:\/\/.*>',
+    '<embed src=\"http.?:\/\/.*>',
+    '<button id=\".*\" onclick=\".*\">']
 js_signs = ['eval(']
 exceptions = ['gif',
-              'png',
-              'png/',
-              'svg',
-              'ico',
-              'jpg',
-              'pic1',
-              'videoImg',
-              'logo',
-              'image',
-              'webp',
-              'gif/',
-              'woff2',
-              'woff']
+    'png',
+    'png/',
+    'svg',
+    'ico',
+    'jpg',
+    'pic1',
+    'videoImg',
+    'logo',
+    'image',
+    'webp',
+    'gif/',
+    'woff2',
+    'woff']
+result_filtering = ['web.archive.org',
+    'googlecode.com',
+    'cloudflare.com',
+    'surveygizmo.com']
+
+[urls]
+blacklist_url = ['https://malwareworld.com/textlists/suspiciousDomains.txt',
+    'https://malwareworld.com/textlists/suspiciousIPs.txt']
