@@ -5,7 +5,6 @@ import re
 import requests
 import toml
 
-
 #########CONSTANTS##########
 PATH = '/Users/chenscheim/PycharmProjects/WebsiteAbuse/datasets/results/'
 JS = ["js", "js/"]
@@ -72,7 +71,10 @@ def import_blacklists():
     blacklist = []
     for black in blacks:
         blacklist += requests.get(black).content.decode(conf['constants']['utf8']).split('\n')
-    blacklist.remove('')
+    try:
+        blacklist.remove('')
+    except:
+        pass
     return blacklist
 
 
@@ -114,5 +116,3 @@ def search_sign(html, file_type, url, domain, blacklist):
                 else:
                     results[s] = [url]
     return results
-
-

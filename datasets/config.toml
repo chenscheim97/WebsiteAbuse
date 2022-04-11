@@ -5,7 +5,7 @@ name = "Chen Scheim"
 dob = 1997-05-27T07:32:00-08:00
 
 [limits]
-days_ago = 30
+days_ago = 60
 
 [constants]
 zero = 0
@@ -14,7 +14,8 @@ space = ' '
 line = '\r\n'
 txt = '.txt'
 wild = '*'
-multiprocess = 50
+multiprocess = 10
+company_limit = 500
 write = 'w'
 read = 'r'
 utf8 = 'utf-8'
@@ -29,7 +30,10 @@ signs = ['<script>document.body.innerHTML=\'.*\'</script>',
     '<object data=\"http.?:\/\/.*>',
     '<embed type=\".*\" src=\"http.?:\/\/.*>',
     '<embed src=\"http.?:\/\/.*>',
-    '<button id=\".*\" onclick=\".*\">']
+    '127.0.0.1\/',
+    '\.\./\.\./',
+    '\\\.\.\\\.\.']
+archive = ['<button id=\".*\" onclick=\".*\">']
 js_signs = ['eval(']
 exceptions = ['gif',
     'png',
@@ -45,11 +49,12 @@ exceptions = ['gif',
     'gif/',
     'woff2',
     'woff']
-result_filtering = ['web.archive.org',
+result_filtering = ['archive.org',
     'googlecode.com',
     'cloudflare.com',
-    'surveygizmo.com']
-
+    'surveygizmo.com',
+    'maxcdn.com',
+    'spotify.com']
 [urls]
 blacklist_url = ['https://malwareworld.com/textlists/suspiciousDomains.txt',
     'https://malwareworld.com/textlists/suspiciousIPs.txt']

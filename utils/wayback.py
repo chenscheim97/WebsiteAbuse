@@ -24,12 +24,12 @@ def get_resources(url, blacklist):
     :param url: the domain or specific url
     :return:
     """
-    # counter = 1
+    counter = 1
     url = url + conf['constants']['wild']
     cdx = WaybackMachineCDXServerAPI(url, start_timestamp=start_timestamp)
     snap = cdx.snapshots()
     for item in snap:
-        # print(url[:-1] + "-" + str(counter))
+        print(url[:-1] + "-" + str(counter))
         exceptions = conf['signatures']['exceptions']
         ext = item.archive_url.split(".")[-1]
         if ext not in exceptions:
@@ -37,6 +37,5 @@ def get_resources(url, blacklist):
             res = functions.search_sign(html.decode(errors='ignore'), ext, item.archive_url, url[:-1], blacklist)
             if res:
                 functions.write_result(res, url[:-1])
-
-        # counter += 1
+        counter += 1
 
