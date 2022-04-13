@@ -29,7 +29,6 @@ if __name__ == '__main__':
         p.close()
         p.join()
         counter += conf['constants']['multiprocess']
-        print(counter)
 
     end = time.perf_counter()
     print(end - start)

@@ -4,12 +4,15 @@ import datetime
 import re
 import requests
 import toml
+from os.path import exists
+
 
 #########CONSTANTS##########
 PATH = '/Users/chenscheim/PycharmProjects/WebsiteAbuse/datasets/results/'
 JS = ["js", "js/"]
 with open('datasets/config.toml', 'r') as f:
     conf = toml.load(f)
+LINE = conf['constants']['line']
 
 
 #########FUNCTIONS##########
@@ -31,12 +34,16 @@ def write_result(results, domain):
     :param domain: string
     :return: None
     """
-    filename = PATH + str(datetime.datetime.now()) + conf['constants']['space'] + domain + conf['constants']['txt']
+    print("should write")
+    t = datetime.datetime.now().strftime('%Y%m')
+    filename = PATH + str(t) + conf['constants']['space'] + domain + conf['constants']['txt']
     to_write = ""
     for key in results.keys():
-        to_write += key + " - " + str(results[key]) + conf['constants']['line'] + conf['constants']['line']
-
-    with open(filename, conf['constants']['write']) as f:
+        to_write += key + " - " + str(LINE.join(results[key])) + LINE
+    mode = conf['constants']['write']
+    if exists(filename):
+        mode = conf['constants']['append']
+    with open(filename, mode) as f:
         f.write(to_write)
 
 
@@ -71,10 +78,6 @@ def import_blacklists():
     blacklist = []
     for black in blacks:
         blacklist += requests.get(black).content.decode(conf['constants']['utf8']).split('\n')
-    try:
-        blacklist.remove('')
-    except:
-        pass
     return blacklist
 
 
@@ -104,15 +107,16 @@ def search_sign(html, file_type, url, domain, blacklist):
             if res:
                 for s in res:
                     if s in results.keys():
-                        results[s].append(url)
+                        results[s].append([url, html])
                     else:
-                        results[s] = [url]
+                        results[s] = [url, html]
+        return results
     for sign in signs:
         res = check_sign(sign, html, domain)
         if res:
             for s in res:
                 if s in results.keys():
-                    results[s].append(url)
+                    results[s].append([url, html])
                 else:
-                    results[s] = [url]
+                    results[s] = [url, html]
     return results

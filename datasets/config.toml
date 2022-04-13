@@ -14,9 +14,10 @@ space = ' '
 line = '\r\n'
 txt = '.txt'
 wild = '*'
-multiprocess = 10
+multiprocess = 20
 company_limit = 500
 write = 'w'
+append = 'a'
 read = 'r'
 utf8 = 'utf-8'
 
@@ -32,7 +33,11 @@ signs = ['<script>document.body.innerHTML=\'.*\'</script>',
     '<embed src=\"http.?:\/\/.*>',
     '127.0.0.1\/',
     '\.\./\.\./',
-    '\\\.\.\\\.\.']
+    '\\\.\.\\\.\.',
+    '<script>eval\(function\(.*</script>',
+    '<script>eval\(unescape\(.*</script>',
+    'document\.write\(.?<iframe src=.*</iframe>',
+    '＜script＞document\.body.*</script>']
 archive = ['<button id=\".*\" onclick=\".*\">']
 js_signs = ['eval(']
 exceptions = ['gif',
@@ -51,6 +56,7 @@ exceptions = ['gif',
     'woff']
 result_filtering = ['archive.org',
     'googlecode.com',
+    'googleoptimize.com',
     'cloudflare.com',
     'surveygizmo.com',
     'maxcdn.com',

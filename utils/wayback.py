@@ -29,7 +29,7 @@ def get_resources(url, blacklist):
     cdx = WaybackMachineCDXServerAPI(url, start_timestamp=start_timestamp)
     snap = cdx.snapshots()
     for item in snap:
-        print(url[:-1] + "-" + str(counter))
+        # print(url[:-1] + "-" + str(counter))
         exceptions = conf['signatures']['exceptions']
         ext = item.archive_url.split(".")[-1]
         if ext not in exceptions:
