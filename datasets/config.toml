@@ -2,7 +2,6 @@ title = "TOML File"
 
 [owner]
 name = "Chen Scheim"
-dob = 1997-05-27T07:32:00-08:00
 
 [limits]
 days_ago = 60
@@ -10,16 +9,18 @@ days_ago = 60
 [constants]
 zero = 0
 one = 1
-space = ' '
+under = '_'
 line = '\r\n'
 txt = '.txt'
+html = '.html'
 wild = '*'
-multiprocess = 20
-company_limit = 500
+multiprocess = 1000
+company_limit = 2323
 write = 'w'
 append = 'a'
 read = 'r'
 utf8 = 'utf-8'
+vt_api = '42273d6479030971ddb208428ec9a768fd05d5e29e0125b5a80c1bdd7d995275'
 
 [signatures]
 signs = ['<script>document.body.innerHTML=\'.*\'</script>',
@@ -32,35 +33,48 @@ signs = ['<script>document.body.innerHTML=\'.*\'</script>',
     '<embed type=\".*\" src=\"http.?:\/\/.*>',
     '<embed src=\"http.?:\/\/.*>',
     '127.0.0.1\/',
-    '\.\./\.\./',
+    '/\.\./\.\./',
     '\\\.\.\\\.\.',
     '<script>eval\(function\(.*</script>',
     '<script>eval\(unescape\(.*</script>',
     'document\.write\(.?<iframe src=.*</iframe>',
     '＜script＞document\.body.*</script>']
-archive = ['<button id=\".*\" onclick=\".*\">']
 js_signs = ['eval(']
 exceptions = ['gif',
-    'png',
-    'png/',
-    'svg',
-    'ico',
-    'jpg',
-    'pic1',
-    'videoImg',
-    'logo',
-    'image',
-    'webp',
-    'gif/',
-    'woff2',
-    'woff']
+            'png',
+            'png/',
+            'svg',
+            'ico',
+            'jpg',
+            'pic1',
+            'videoImg',
+            'logo',
+            'image',
+            'webp',
+            'gif/',
+            'woff2',
+            'woff']
 result_filtering = ['archive.org',
+    'googleapis.com',
     'googlecode.com',
     'googleoptimize.com',
     'cloudflare.com',
+    'cloudfront.net',
     'surveygizmo.com',
     'maxcdn.com',
-    'spotify.com']
+    'spotify.com',
+    'github.com',
+    'jsdelivr.net',
+    'cludo.com',
+    'fontawesome.com',
+    'unpkg.com']
+mimetype = ['text/css',
+    'text/html',
+    'text/javascript',
+    'application/x-httpd-php',
+    'application/rtf']
+archive = ['<button id=\".*\" onclick=\".*\">']
+
 [urls]
 blacklist_url = ['https://malwareworld.com/textlists/suspiciousDomains.txt',
     'https://malwareworld.com/textlists/suspiciousIPs.txt']
